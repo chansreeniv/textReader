@@ -13,6 +13,7 @@ app.use('/', (req, res, next) => {
     res.render('index');
     const reader = new Reader;
     reader.edit();
+    // reader.pdf2txt();
 })
 
 app.listen(3000);

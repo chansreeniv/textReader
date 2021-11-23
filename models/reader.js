@@ -12,6 +12,8 @@ module.exports = class Reader{
         const p = path.join(path.dirname(require.main.filename), 'data', 'textread.txt');
         fs.readFile(p,'utf8', (err, datafile) =>{
            const textReader = this.txtReader(datafile);
+           let cleanedText = textReader.replace(/Name:\[| Ph:\[| \| |Age:\[/gi," ")
+           console.log(cleanedText);
            console.log(textReader);
         })
 
@@ -27,15 +29,21 @@ module.exports = class Reader{
         let textFile = 0; 
         txt.eachMatch(data, textMatch, (match, detail) => {
         textFile = match;
+        console.log(detail);
         return match;
     })
         return textFile;
     ;}
 
     // pdf2txt(datafile){
-    //     pdf(datafile).
-    //     then((res)=>{
-    //         console.log(res);
+    //     const p = path.join(path.dirname(require.main.filename), 'data', 'CBC.pdf');
+    //     fs.readFile(p, (err, datafile) =>{
+    //         pdf(datafile).
+    //         then((res)=>{
+    //             console.log(res);
+    //         })
+    //     //    console.log(textReader);
     //     })
+        
     // }
 }
