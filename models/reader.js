@@ -1,20 +1,19 @@
 const fs = require('fs');
-const path = require('path');
 const txt = require('txt');
 const pdf = require('pdf-parse');
+const path = require('path');
+
+const p = path.join(path.dirname(require.main.filename), 'data', 'textread.txt');
 
 module.exports = class Reader{
     constructor(){
-
     }
 
-    edit(){
-        const p = path.join(path.dirname(require.main.filename), 'data', 'textread.txt');
+    textParser(){
         fs.readFile(p,'utf8', (err, datafile) =>{
-           const textReader = this.txtReader(datafile);
+           const textReader = this.searchText(datafile);
            let cleanedText = textReader.replace(/CR No.:\[|Name:\[| Ph:\[| \| |Age:\[/gi," ")
            console.log(cleanedText);
-        //    console.log(textReader);
         })
 
         // fs.readFile(p, (err, datafile)=>{
@@ -22,7 +21,7 @@ module.exports = class Reader{
         // })
     }
 
-    txtReader(data){
+    searchText(data){
 
         // const textMatch = /Date: \[.*/g; //working 
         const textMatch = /CR No.:\[.*/g;
