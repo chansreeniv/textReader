@@ -12,9 +12,9 @@ module.exports = class Reader{
         const p = path.join(path.dirname(require.main.filename), 'data', 'textread.txt');
         fs.readFile(p,'utf8', (err, datafile) =>{
            const textReader = this.txtReader(datafile);
-           let cleanedText = textReader.replace(/Name:\[| Ph:\[| \| |Age:\[/gi," ")
+           let cleanedText = textReader.replace(/CR No.:\[|Name:\[| Ph:\[| \| |Age:\[/gi," ")
            console.log(cleanedText);
-           console.log(textReader);
+        //    console.log(textReader);
         })
 
         // fs.readFile(p, (err, datafile)=>{
@@ -25,11 +25,10 @@ module.exports = class Reader{
     txtReader(data){
 
         // const textMatch = /Date: \[.*/g; //working 
-        const textMatch = /Name:\[.*/g;
+        const textMatch = /CR No.:\[.*/g;
         let textFile = 0; 
         txt.eachMatch(data, textMatch, (match, detail) => {
         textFile = match;
-        console.log(detail);
         return match;
     })
         return textFile;
