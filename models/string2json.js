@@ -2,7 +2,7 @@ module.exports = class databaseObj{
     constructor(textString){
         this.textString = textString;
     }
-    string2json(cb){
+    string2jsonCRN(cb){
         const CRNO = this.textString.slice(0,4);
         const name = this.textString.slice(5,15);
         const phoneNo = this.textString.slice(16,26);
