@@ -6,9 +6,10 @@ const filePath = path.join(path.dirname(require.main.filename), 'data', 'textrea
 
 exports.getParsedText = (req, res, next) =>{
     const reader = new Reader(filePath);
-    reader.textParser((result)=>{
-        res.render('index',{response: result}); 
-        const databaseObj = new DatabaseObj(result);
-        databaseObj.string2json();
+    reader.textParser((ParsedResult)=>{
+        const databaseObj = new DatabaseObj(ParsedResult);
+        databaseObj.string2json(JSONresult =>{
+            res.render('index',{response: JSONresult}); 
+        });
     });
 }
