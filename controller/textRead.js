@@ -12,12 +12,13 @@ exports.getParsedText = (req, res, next) =>{
         new Reader(filePath, filter)   
         const reader = new Reader(filePath, filter);
         reader.cleanSearchResult((ParsedResult)=>{
-            const databaseObj = new DatabaseObj(ParsedResult);
-            databaseObj.string2jsonCRN(JSONresult =>{
-                res.render('index',{response: JSONresult}); 
-            });
+            res.render('index');
+            // const databaseObj = new DatabaseObj(ParsedResult);
+            // databaseObj.string2jsonCRN(JSONresult =>{
+            //     res.render('index',{response: JSONresult}); 
+            // });
         });
     }
-    parsing(filter.CRNOsearch);
-    // parsing(filter.dateSearch);
+    // parsing(filter.CRNOsearch);
+    parsing(filter.dateSearch);
 }

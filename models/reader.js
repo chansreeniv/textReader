@@ -10,12 +10,21 @@ module.exports = class Reader {
   cleanSearchResult(cb) {
     fs.readFile(this.filePath, "utf8", (err, datafile) => {
       const textReader = this.searchText(datafile);
-      this.cleanedText = textReader.replace(
-        /CR No.:\[|Name:\[| Ph:\[| \| |Age:\[/gi,
+      if(textReader.slice(0,4) === 'Date'){
+      //  this.cleanedText = textReader.replace(
+
+      //  )
+      console.log(textReader);
+      }else if(textReader.slice(0,4) === 'CR N'){
+        console.log('its cR NO');
+        this.cleanedText = textReader.replace(
+          /CR No.:\[|Name:\[| Ph:\[| \| |Age:\[/gi,
         " "
       );
       console.log(this.cleanedText + "cleaned text");
       cb(this.cleanedText);
+      }
+       
     });
     return this.cleanedText;
   }
