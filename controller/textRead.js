@@ -8,6 +8,7 @@ const filter = Filter.Filters;
 const filePath = path.join(path.dirname(require.main.filename), 'data', 'textread.txt');
 
 exports.getParsedText = (req, res, next) =>{
+    let JSONoutput = 'no Value';
     const parsing = (filter, cb) => {
         new Reader(filePath, filter)   
         const reader = new Reader(filePath, filter);
@@ -15,11 +16,12 @@ exports.getParsedText = (req, res, next) =>{
             const databaseObj = new DatabaseObj(ParsedResult);
             databaseObj.string2JSON(JSONresult =>{
                 console.log(JSONresult + "jsonresult")
-                res.render('index',{response: JSONresult}); 
+                JSONoutput = JSONresult;
             });
         });
     }
     // filter.map(parsing);
-    // parsing(filter.dateSearch);
+    parsing(filter.dateSearch);
     parsing(filter.CRNOsearch);
+    res.render('index',{response: JSONoutput});
 }
