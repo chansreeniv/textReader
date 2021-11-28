@@ -5,16 +5,19 @@ module.exports = class Reader {
   constructor(filePath, filter) {
     this.filePath = filePath;
     this.textMatch = filter;
+    this.filter = filter;
   }
 
   cleanSearchResult(cb) {
     fs.readFile(this.filePath, "utf8", (err, datafile) => {
       const textReader = this.searchText(datafile);
-      if(textReader.slice(0,4) === 'Date'){
-      //  this.cleanedText = textReader.replace(
 
-      //  )
-      console.log(textReader);
+      console.log(this.filter);
+      if(textReader.slice(0,4) === 'Date'){
+      this.cleanedText = textReader.replace(
+        /Date: \[/gi, ""
+      );
+      console.log('the value' + this.cleanedText);
       }else if(textReader.slice(0,4) === 'CR N'){
         console.log('its cR NO');
         this.cleanedText = textReader.replace(
@@ -22,8 +25,8 @@ module.exports = class Reader {
         " "
       );
       console.log(this.cleanedText + "cleaned text");
-      cb(this.cleanedText);
-      }
+    }
+    cb(this.cleanedText);
        
     });
     return this.cleanedText;

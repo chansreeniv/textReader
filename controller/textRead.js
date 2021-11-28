@@ -8,17 +8,18 @@ const filter = Filter.Filters;
 const filePath = path.join(path.dirname(require.main.filename), 'data', 'textread.txt');
 
 exports.getParsedText = (req, res, next) =>{
-    const parsing = (filter) => {
+    const parsing = (filter, cb) => {
         new Reader(filePath, filter)   
         const reader = new Reader(filePath, filter);
         reader.cleanSearchResult((ParsedResult)=>{
-            res.render('index');
-            // const databaseObj = new DatabaseObj(ParsedResult);
-            // databaseObj.string2jsonCRN(JSONresult =>{
-            //     res.render('index',{response: JSONresult}); 
-            // });
+            const databaseObj = new DatabaseObj(ParsedResult);
+            databaseObj.string2JSON(JSONresult =>{
+                console.log(JSONresult + "jsonresult")
+                res.render('index',{response: JSONresult}); 
+            });
         });
     }
-    // parsing(filter.CRNOsearch);
-    parsing(filter.dateSearch);
+    // filter.map(parsing);
+    // parsing(filter.dateSearch);
+    parsing(filter.CRNOsearch);
 }
