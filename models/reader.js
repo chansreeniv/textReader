@@ -1,6 +1,10 @@
 const fs = require("fs");
 const txt = require("txt");
 
+const Filters = require('./filters');
+const cleaningFilters = Filters.CleaningFilters;
+
+
 module.exports = class Reader {
   constructor(filePath, filter) {
     this.filePath = filePath;
@@ -11,25 +15,20 @@ module.exports = class Reader {
   cleanSearchResult(cb) {
     fs.readFile(this.filePath, "utf8", (err, datafile) => {
       const textReader = this.searchText(datafile);
-
       console.log(this.filter);
-      if(textReader.slice(0,4) === 'Date'){
-      this.cleanedText = textReader.replace(
-        /Date: \[/gi, ""
-      );
-      console.log('the value' + this.cleanedText);
-      }else if(textReader.slice(0,4) === 'CR N'){
-        console.log('its cR NO');
+      if (textReader.slice(0, 4) === "Date") {
+        this.cleanedText = textReader.replace(cleaningFilters.date, "");
+        console.log("the Date" + this.cleanedText);
+      } else if (textReader.slice(0, 4) === "CR N") {
+        console.log("its cR NO");
         this.cleanedText = textReader.replace(
-          /CR No.:\[|Name:\[| Ph:\[| \| |Age:\[/gi,
-        " "
-      );
-      console.log(this.cleanedText + "cleaned text");
-    }
-    cb(this.cleanedText);
-       
+          cleaningFilters.crno,
+          " "
+        );
+        console.log(this.cleanedText + "cleaned text");
+      }
+      cb(this.cleanedText);
     });
-    return this.cleanedText;
   }
 
   searchText(data) {
