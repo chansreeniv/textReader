@@ -20,8 +20,9 @@ exports.getParsedText = (req, res, next) =>{
         });
     }
     // filter.map(parsing);
-    parsing(filter.dateSearch);
     parsing(filter.CRNOsearch);
+    parsing(filter.dateSearch);
+    parsing(filter.primaryContactSearch);
     res.render('index',{response: "combineAll"});
 }
 
