@@ -13,9 +13,9 @@
 exports.cleaningFilters = [
   /Date: \[/gi,
   /CR No.:\[/,
-  /Name:\[/,
-  / Ph:\[| \|/,
-  / |Age:\[/gi,
+  /.*Name:\[/,
+  /.*Ph:\[| \|.*/gi,
+  /.*Age:\[/gi,
 ];
 
 

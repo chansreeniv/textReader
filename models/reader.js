@@ -32,9 +32,10 @@ module.exports = class Reader {
       // }
 
       cleaningFilters.map((result)=>{
+        // console.log(result + 'Match')
         const cleanedText = textReader.replace(result, " ");
-        console.log(cleanedText + 'cleaned text');
-      }).filter((result)=>{});
+        // console.log(cleanedText + 'cleaned text');
+      })
       // cb(this.cleanedText);
     });
   }
