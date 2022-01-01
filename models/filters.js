@@ -1,21 +1,17 @@
-// exports.Filters = {
-//   dateSearch: /Date: \[.*/g,
-//   CRNOsearch: /CR No.:\[.*/g,
-//   primaryContactSearch: /Primary contact :.*/g,
-// };
-
-// exports.CleaningFilters = {
-//   date: /Date: \[/gi,
-//   crno: /CR No.:\[|Name:\[| Ph:\[| \| |Age:\[/gi,
-//   primaryContact: /Primary contact :/gi,
-// };
-
 exports.cleaningFilters = [
-  /Date: \[/gi,
-  /CR No.:\[/,
-  /Name:\[/,
-  / Ph:\[| \|/,
-  / |Age:\[/gi,
+  /Date: \[/gi, //date filter
+  /CR No.:\[/, //CRno
+  /.*Name:\[/, //Name
+  /.*Ph:\[| \|/, //Phone No
+  /.*\| Age:\[/gi, //Age
+  /.* CT Value: \[/gi,  //CT value
+  /.*\| SRF ID:\[/gi, //Sf Id
+  /.*\|BUNo.:\[/gi,
+  /.* \(WBC\):/gi,
+  /.* Troponin: \[/gi,
+  /CRP:/,   
+  /.* Chest X-Ray:/,
+  /.*RBS/      
 ];
 
 
@@ -23,5 +19,7 @@ exports.Filters = [
     /Date: \[.*/g, //date search 
     /CR No.:\[.*/g, //crno line search
     /Primary contact :.*/g, //primary contact search
-    /RT-PCR:.*/g //RTPCR test results line
+    /RT-PCR:.*/g, //RTPCR test results line
+    /CBC: .*/g,
+    /CRP: .*/g
 ];

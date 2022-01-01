@@ -15,7 +15,6 @@ let combineAll = [];
 
 exports.getParsedText = (req, res, next) => {
   const parsing = (filter) => {
-    new Reader(filePath, filter);
     const reader = new Reader(filePath, filter);
     reader.cleanSearchResult((parsedResult) => {
       console.log(parsedResult + "parsed resuit");
@@ -24,16 +23,6 @@ exports.getParsedText = (req, res, next) => {
     });
   };
   filter.map(parsing);
-  // parsing(filter.CRNOsearch);
-  // parsing(filter.dateSearch);
-  // parsing(filter.primaryContactSearch);
   res.render("index", { response: "should add here" });
 };
 
-// {
-//         const databaseObj = new DatabaseObj(ParsedResult);
-//         databaseObj.string2JSON(JSONresult =>{
-//             console.log(JSONresult + "jsonresult")
-//             JSONoutput = JSONresult;
-//         });
-//     }
